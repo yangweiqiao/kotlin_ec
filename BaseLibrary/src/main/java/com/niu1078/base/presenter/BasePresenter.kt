@@ -7,4 +7,5 @@ import com.niu1078.base.presenter.view.BaseView
  */
 open class BasePresenter<T : BaseView> {
     lateinit var mView :T
+
 }
