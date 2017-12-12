@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--注册 找回密码 修改密码的界面-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:background="#00000000">
+
+        <LinearLayout
+            android:id="@+id/ll_back"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:paddingRight="@dimen/dp_25"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:background="@mipmap/icon_xiangyou" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            android:text="注册/找回密码/重置密码"
+            android:textColor="#333333"
+            android:textSize="@dimen/dp_17" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/frag_tv_help"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:src="@drawable/frag_we_msg"-->
+        <!--android:text="帮助"-->
+        <!--android:textColor="#6c6c6c" />-->
+    </RelativeLayout>
+    <!--内容区域-->
+    <include layout="@layout/register_content"
+
+        />
+</LinearLayout>
