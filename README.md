@@ -132,3 +132,33 @@
                   }
                    怎么联系起来  Component  连接实例属性和类声明
                  在Component中提供   fun getClassB :ClassB
+## Dagger2
+### 依赖注入
+    目标类中需要用到其他类,首先需要创建其他类的对象,依赖注入就是不需要我们手动的创建对象,通过技术手段把其他类已经初始化好的对象实例注入到目标类中
+    一般的我们可以称依赖注入为控制反转.控制反转分为依赖注入和依赖查找,依赖注入比较常用
+### java注解
+   也叫元数据.一种代码级别的说明
+### dagger2中的inject component module provides 含义,有什么用 ?
+###### Inject
+       用注解来标注目标类中所依赖的其他类,同样采用注解来标注所依赖的其他类的构造函数,那注解的名字就是inject
+###### Component
+        Component也是一个注解类,一个类想要是Component,必须用Component注解来标注该类,并且是接口或者是抽象类
+        工作原理 : Component需要引用到目标类的实例,Component会找目标类中用Inject注解标注的属性,查找到相应的属性后会接着找该属性对应的用Inject标注的构造函数,就发生联系了,剩下的工作就是初始化该属性的实例并且把实例进行赋值.我们可以叫他注入器
+
+###### module
+        项目中使用到第三方库,这个时候Inject就不能用了
+        Module其实就是一个简单的工厂模式,Module里面的方法基本都是创建类实例的方法
+        modules可以加入多个Module
+###### provides
+
+##### Qualifier 限定符
+        解决依赖注入迷失
+#### Scope 作用域
+        用处就是Component的组织
+        更好的管理Component之间的组织方式,不管是依赖方式还是包含方式,都有必要用自定义的Scope注解标注这些Component,这些注解最好不要一样,不一样是为了能更好的体现出
+        component之间的组织方式,还有编辑器检查依赖关系或者是包含关系的Component,若发现有Component没有用自定义的scope注解标注,就会报错
+        更好的管理component与module之间的匹配关系,编译器会检查Component管理的Modules,若发现Component的自定义的Scope注解与Modules中的标注创建类实例方法的注解不一样,就会报错
+
+### 能带来哪些好处 ?
+
+### 怎么用到项目中?
