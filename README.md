@@ -48,3 +48,18 @@
     Application 和 Library
     Application作为应用程序启动 : apply plugin:'com.android.application'
     Library作为库引用 : apply plugin:'com.android.library'
+#### Retrofit 集成与单例工厂
+    配置 : okhttp Retrofit Gson interceptor adapter-rxjava
+    1.定义一个接口  接口里面定义了请求的方法 返回值的类型
+
+    2.构建Retrofit
+     可以传入初始化的参数 baseurl
+
+    3.调用
+     creat(接口.class).调用接口里面的方法
+     post请求接口里面的参数是@Body User user 就是自己创建的一个请求体
+    单例工厂
+     1.私有化构造
+     2.伴生对象 懒加载 这也是一个线程安全的
+     3.init{ 初始化Retrofit对象 设置base地址 拦截器 gson转换 client}
+     4.

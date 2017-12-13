@@ -5,6 +5,11 @@ package com.niu1078.base.data.protocol
  */
 class BaseResp<out T>(
         val status: Int,
+        val data: T,
+        val ok:Boolean ,
         val message: String,
-        val data: T
+
+
+        val code:Int ,
+        val result:T
 )

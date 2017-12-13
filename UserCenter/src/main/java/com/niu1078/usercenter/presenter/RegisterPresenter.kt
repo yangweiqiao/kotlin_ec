@@ -17,8 +17,8 @@ class RegisterPresenter : BasePresenter<RegisterView>() {
          */
         val userService = UserSeviceImpl()
 
-        userService.register(username,password,code)
-                .excute(object:BaseSubscriber<Boolean>(){
+        userService.register(username, password, code)
+                .excute(object : BaseSubscriber<Boolean>() {
                     override fun onNext(t: Boolean) {
                         mView.onRegisterResult(t)
                     }

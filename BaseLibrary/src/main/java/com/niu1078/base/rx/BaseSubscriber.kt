@@ -5,7 +5,7 @@ import rx.Subscriber
 /**
  * Created by Administrator on 2017/12/12.
  */
-open class BaseSubscriber<T> :Subscriber<T>(){
+open  class BaseSubscriber<T> :Subscriber<T>(){
     override fun onNext(t: T) {
 
     }

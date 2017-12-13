@@ -9,8 +9,13 @@ import rx.Observable
 
 /**
  * Created by Administrator on 2017/12/12.
+ * 用户api
  */
 interface UserApi {
-      @POST("userCenter/register")
-    fun register(@Body req: RegisterReq) : Observable<BaseResp<String>>
+    /**
+     * 注册接口
+     * 参数是请求的实体
+     */
+    @POST("userCenter/register")
+    fun register(@Body req: RegisterReq): Observable<BaseResp<String>>
 }
