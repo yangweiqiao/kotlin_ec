@@ -2,8 +2,13 @@ package com.niu1078.usercenter.service
 
 import rx.Observable
 
+
 /**
- * Created by Administrator on 2017/12/12.
+ * author :ywq .
+ * time: 2017/12/13:18:14.
+ * desc :Service
+ * action:
+ *
  */
 interface UserService {
 
