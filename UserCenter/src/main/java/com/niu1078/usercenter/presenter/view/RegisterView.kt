@@ -7,6 +7,6 @@ import com.niu1078.base.presenter.view.BaseView
  */
    interface RegisterView :BaseView{
 
-    fun onRegisterResult(result  : Boolean)
+    fun onRegisterResult(result  : String)
 
 }

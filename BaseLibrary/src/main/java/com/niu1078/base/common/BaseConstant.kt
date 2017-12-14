@@ -6,7 +6,8 @@ package com.niu1078.base.common
  */
 class BaseConstant {
     companion object {
-        val SERVICE_ADDRESS="http://192.168.0.18:8080/"
+    const    val SERVICE_ADDRESS="http://192.168.0.18:8080/"
+        const  val TABLE_PREFS="kotlin_mall"
     }
 
 }
