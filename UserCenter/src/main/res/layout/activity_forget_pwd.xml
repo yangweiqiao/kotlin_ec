@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <!--注册 找回密码 修改密码的界面-->
+    <!--内容区域-->
+    <com.niu1078.base.widget.HeaderBar
+        app:isShowBack="true"
+        app:titleText="找回密码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.niu1078.base.widget.HeaderBar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_42"
+        android:paddingRight="@dimen/dp_42"
+         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#999999">
+
+                <AutoCompleteTextView
+                    android:id="@+id/mUserPhonef"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_iphone"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:hint="请输入手机号码"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHighlight="#999999"
+                    android:textColorHint="#6c6c6c"
+                    android:textSize="@dimen/sp_14" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHint="#999999">
+
+                <AutoCompleteTextView
+                    android:id="@+id/mUserCodef"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_mail"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:hint="输入验证码"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHighlight="#999999"
+                    android:textColorHint="#6c6c6c"
+                    android:textSize="@dimen/sp_14" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+            android:id="@+id/mForgetPwdCode"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_30"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/next_click"
+            android:gravity="center"
+            android:text="验证码"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dp_12" />
+
+            <!--<com.kotlin.base.widgets.VerifyButton-->
+                <!--android:id="@+id/frag_register_tv_getcode"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--/>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_password1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#999999">
+
+                <AutoCompleteTextView
+                    android:id="@+id/mUserPasswordf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_lock"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:hint="输入密码"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHighlight="#999999"
+                    android:textColorHint="#6c6c6c"
+                    android:textSize="@dimen/sp_14" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#999999">
+
+                <AutoCompleteTextView
+                    android:id="@+id/mUserPassword2f"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_lock"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:hint="再次输入密码"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHighlight="#999999"
+                    android:textColorHint="#6c6c6c"
+                    android:textSize="@dimen/sp_14" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/mForgetPwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_35"
+            android:background="@drawable/btn_common_selector"
+            android:gravity="center"
+            android:text="确定"
+            android:enabled="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+</LinearLayout>

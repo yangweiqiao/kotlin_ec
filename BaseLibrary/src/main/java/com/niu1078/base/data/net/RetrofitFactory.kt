@@ -71,6 +71,7 @@ class RetrofitFactory private constructor() {
      * 创建具体的service
      */
     fun <T> creat(service: Class<T>): T {
+
         return retrofit.create(service)
 
     }

@@ -23,6 +23,8 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".ui.activity.ForgetPwdActivity" />
+        <activity android:name=".ui.activity.UserInfoActivity" />
 
 
     </application>

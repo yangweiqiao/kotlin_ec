@@ -20,18 +20,22 @@ import rx.Observable
  */
 interface UserApi {
     /**
+     *
      * 注册接口
      * 参数是请求的实体
      * 返回值本来是BaseResp 和Rx相关的 用Observable来接受  BaseResp<String> String就是传入的泛型
      */
+    /*
+    注册
+     */
     @POST("userCenter/register")  //标注请求的方法和地址
     fun register(@Body req: RegisterReq): Observable<BaseResp<String>>
 
+    /*
+      登录
+     */
     @POST("userCenter/login")  //标注请求的方法和地址
     fun login(@Body req: LoginReq): Observable<BaseResp<UserInfo>>
-
-
-
     /*
         忘记密码
      */

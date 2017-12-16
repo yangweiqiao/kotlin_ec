@@ -3,8 +3,11 @@ package com.niu1078.usercenter.injection.component
 import com.niu1078.base.injection.Component.ActivityComponent
 import com.niu1078.base.injection.PerComponentScope
 import com.niu1078.usercenter.injection.module.USerModule
+import com.niu1078.usercenter.injection.module.UploadModule
+import com.niu1078.usercenter.ui.activity.ForgetPwdActivity
 import com.niu1078.usercenter.ui.activity.LoginActivity
 import com.niu1078.usercenter.ui.activity.RegisterActivity
+import com.niu1078.usercenter.ui.activity.UserInfoActivity
 import dagger.Component
 
 /**
@@ -14,8 +17,10 @@ import dagger.Component
  * action:
  */
 @PerComponentScope
-@Component(modules = arrayOf(USerModule::class) ,dependencies = arrayOf(ActivityComponent::class))
+@Component(modules = arrayOf(USerModule::class,UploadModule::class) ,dependencies = arrayOf(ActivityComponent::class))
 interface UserComponent {
     fun inject(activity: RegisterActivity)
     fun inject(activity: LoginActivity)
+    fun inject(activity: ForgetPwdActivity)
+    fun inject(activity: UserInfoActivity)
 }

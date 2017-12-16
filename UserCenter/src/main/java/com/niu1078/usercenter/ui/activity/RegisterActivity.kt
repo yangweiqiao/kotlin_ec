@@ -9,7 +9,7 @@ import com.niu1078.base.ui.activity.BaseMvpActivity
 import com.niu1078.usercenter.R
 import com.niu1078.usercenter.injection.component.DaggerUserComponent
 import com.niu1078.usercenter.injection.module.USerModule
-import com.niu1078.usercenter.presenter.RegisterPresenter
+import com.niu1078.usercenter.presenter.p.RegisterPresenter
 import com.niu1078.usercenter.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast

@@ -59,7 +59,6 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:${retrofit_version}"
     compile "com.squareup.retrofit2:adapter-rxjava:${retrofit_version}"
 
-
     //Dagger2
     compile "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
@@ -70,22 +69,22 @@ dependencies {
     compile "com.github.bumptech.glide:glide:$glide_version"
     //Circle ImageView
     compile "de.hdodenhof:circleimageview:${circle_imageView_version}"
-//    //Take Photo
-//    compile "com.jph.takephoto:takephoto_library:${take_photo_version}"
-//    //Alert View
-//    compile "com.bigkoo:alertview:${alert_view_version}"
-//    //七牛
-//    compile 'com.qiniu:qiniu-android-sdk:7.3.+'
-//    //底部导航
-//    compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'
-//    //Banner
-//    compile 'com.youth.banner:banner:1.4.10'  //最新版本
+    //Take Photo
+    compile "com.jph.takephoto:takephoto_library:${take_photo_version}"
+    //Alert View
+    compile "com.bigkoo:alertview:${alert_view_version}"
+    //七牛
+    compile 'com.qiniu:qiniu-android-sdk:7.3.+'
+    //底部导航
+    compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'
+    //Banner
+    compile 'com.youth.banner:banner:1.4.10'  //最新版本
 //    //标签
 //    compile 'com.github.shts:TriangleLabelView:1.1.2'
 //    //画廊
 //    compile 'com.github.crosswall:Android-Coverflow:release-v1.0.4'
     //MulitStateView
- //   compile "com.github.Kennyc1012:MultiStateView:$multi_state_view_version"
+    //   compile "com.github.Kennyc1012:MultiStateView:$multi_state_view_version"
 //    //上下拉刷新
 //    compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
 //    //Kotlin Bus
@@ -96,8 +95,6 @@ dependencies {
 //    compile "com.alibaba:arouter-api:$arouter_api_version"
 //    //BadgeView
 //    compile 'q.rorbin:badgeview:1.1.2'
-
-
 
 //    // Anko Layouts 测试直接anko布局
 //    compile "org.jetbrains.anko:anko-sdk25:$anko_version" // sdk15, sdk19, sdk21, sdk23 are also available

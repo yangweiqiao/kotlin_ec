@@ -157,4 +157,38 @@
 ## HeaderBar的封装
     通过自定义控件封装顶部导航栏
 ## ProgressLoading的封装
+## 用户注册
+## 用户登录
+## 忘记密码 重置密码
 
+
+## 闲的没事 配置linux 下的java 开发环境
+     1.安装java jdk
+     2.下载jdk
+     3.推送到服务器中
+     4.登录Linux，切换到root用户 su root 获取root用户权限，当前工作目录不变(需要root密码)
+     5.在usr目录下建立java安装目录
+     　        　cd /usr
+     　          　mkdir java
+     6.将jdk-8u60-linux-x64.tar.gz拷贝到java目录下
+   　            　cp /mnt/hgfs/linux/jdk-8u151-linux-x64.tar.gz /usr/java/
+     7.解压jdk到当前目录,得到文件夹 jdk1.8.0_*　　(注意：下载不同版本的JDK目录名不同！)
+   　　          tar -zxvf jdk-8u151-linux-x64.tar.gz
+     8.安装完毕为他建立一个链接以节省目录长度
+   　        　ln -s /usr/java/jdk1.8.0_151/ /usr/jdk
+    9.编辑配置文件，配置环境变量
+   　　vim /etc/profile
+   　　在文本的末尾添加如下内容：
+           JAVA_HOME=/usr/jdk
+           CLASSPATH=$JAVA_HOME/lib/
+           PATH=$PATH:$JAVA_HOME/bin
+           export PATH JAVA_HOME CLASSPATH
+     10.重启 udo shutdown -r now
+
+     9、查看 java -version
+
+       　　java version "1.8.0_151"
+       　　Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+       　　Java HotSpot(TM) Client VM (build 25.60-b23, mixed mode)
+#### 安装tomcat
+       

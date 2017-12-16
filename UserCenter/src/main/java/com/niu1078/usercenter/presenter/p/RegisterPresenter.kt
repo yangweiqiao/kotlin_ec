@@ -1,4 +1,4 @@
-package com.niu1078.usercenter.presenter
+package com.niu1078.usercenter.presenter.p
 
 import com.kotlin.base.utils.NetWorkUtils
 import com.niu1078.base.common.AppManager
