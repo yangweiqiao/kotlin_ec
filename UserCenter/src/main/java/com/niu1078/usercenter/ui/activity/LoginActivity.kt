@@ -24,7 +24,8 @@ import org.jetbrains.anko.toast
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
     override fun onLoginResult(result: UserInfo) {
         UserPrefsUtils.putUserInfo(result)
-        startActivity<UserInfoActivity>()
+//        startActivity<UserInfoActivity>()
+        finish()
     }
 
     override fun injectComponent() {

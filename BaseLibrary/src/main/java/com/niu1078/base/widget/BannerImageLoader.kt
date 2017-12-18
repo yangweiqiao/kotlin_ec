@@ -13,6 +13,8 @@ import com.youth.banner.loader.ImageLoader
  */
 class BannerImageLoader : ImageLoader() {
     override fun displayImage(context: Context, path: Any, imageView: ImageView) {
+        println("图片地址打印:${path.toString()}")
+
         GlideUtils.loadUrlImage(context, path.toString(), imageView)
 
     }

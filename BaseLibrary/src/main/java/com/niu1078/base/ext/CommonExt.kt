@@ -4,10 +4,8 @@ import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
+import com.kotlin.base.utils.GlideUtils
 import com.kotlin.base.widgets.DefaultTextWatcher
 import com.niu1078.base.R
 import com.niu1078.base.data.protocol.BaseResp
@@ -84,4 +82,11 @@ fun TextView.enable(et:EditText,method: () -> Boolean){
             btn.isEnabled = method()
         }
     })
+
+}
+/*
+    ImageView加载网络图片
+ */
+fun ImageView.loadUrl(url: String) {
+    GlideUtils.loadUrlImage(context, url, this)
 }
