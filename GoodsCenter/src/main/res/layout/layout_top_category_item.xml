@@ -6,6 +6,7 @@
             style="@style/MatchWrap"
             android:background="@drawable/top_category_bg_selector"
             android:gravity="center"
+        android:text="@string/app_name"
             android:textColor="@drawable/top_category_text_selector"
             android:padding="@dimen/common_padding_middle"/>
 </LinearLayout>
