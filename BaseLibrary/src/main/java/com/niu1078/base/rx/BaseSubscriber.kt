@@ -6,7 +6,7 @@ import rx.Subscriber
 /**
  * Created by Administrator on 2017/12/12.
  */
-open  class BaseSubscriber<T>(val baseView: BaseView) :Subscriber<T>(){
+open class BaseSubscriber<T>(val baseView: BaseView) : Subscriber<T>() {
     override fun onNext(t: T) {
 
     }
@@ -17,9 +17,9 @@ open  class BaseSubscriber<T>(val baseView: BaseView) :Subscriber<T>(){
 
     override fun onError(e: Throwable?) {
         baseView.hideLoading()
-if (e is BaseException){
-    baseView.onError(e.msg)
-}
+        if (e is BaseException) {
+            baseView.onError(e.msg)
+        }
     }
 
 }

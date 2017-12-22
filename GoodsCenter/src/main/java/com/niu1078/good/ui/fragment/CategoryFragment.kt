@@ -26,14 +26,12 @@ class CategoryFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_category, container, false)
-
     }
 
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-
     }
 
     private fun initView() {
@@ -48,7 +46,6 @@ class CategoryFragment : BaseFragment() {
 
 
 
-        topCaregoryAdapter.setData(arrayListOf)
         mTopCategoryRv.adapter = topCaregoryAdapter
 
         topCaregoryAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Category> {
@@ -60,13 +57,19 @@ class CategoryFragment : BaseFragment() {
             }
         })
 
-
+        topCaregoryAdapter.setData(arrayListOf)
         val gridLayoutManager = GridLayoutManager(context, 3)
         mSecondCategoryRv.layoutManager = gridLayoutManager
         val sceondCaregoryAdapter = SceondCaregoryAdapter(context)
         mSecondCategoryRv.adapter = sceondCaregoryAdapter
+        sceondCaregoryAdapter.setOnItemClickListener(object: BaseRecyclerViewAdapter.OnItemClickListener<Category> {
+            override fun onItemClick(item: Category, position: Int) {
 
 
+            }
+        })
+        sceondCaregoryAdapter.setData(arrayListOf)
+        mMultiStateView.viewState=0
     }
 
 

@@ -1,16 +1,17 @@
 package com.niu1078.usercenter.presenter.p
 
-import com.kotlin.base.utils.NetWorkUtils
-import com.niu1078.base.common.AppManager
 import com.niu1078.base.ext.excute
 import com.niu1078.base.presenter.BasePresenter
-import com.niu1078.base.rx.BaseException
 import com.niu1078.base.rx.BaseSubscriber
 import com.niu1078.usercenter.presenter.view.RegisterView
 import com.niu1078.usercenter.service.UserService
+import rx.Subscriber
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
+ *
  * Created by Administrator on 2017/12/12.
  */
 class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {

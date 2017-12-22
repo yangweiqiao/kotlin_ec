@@ -10,14 +10,13 @@ import dagger.Provides
 /**
  * author :ywq .
  * time: 2017/12/16:13:44.
- * desc :
+ * desc :接口不能实例化 只能通过实现类实例化 这里就要使用@module 在接口实现类的构造方法中 也要使用@inject 构造
  * action:
  */
 @Module
 class UploadModule {
     @Provides
     fun providesUploadService(service: UploadServiceImpl): UploadService {
-
         return service
     }
 

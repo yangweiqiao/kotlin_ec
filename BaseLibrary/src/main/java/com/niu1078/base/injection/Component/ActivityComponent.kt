@@ -11,7 +11,7 @@ import dagger.Component
 /**
  * author :ywq .
  * time: 2017/12/14:10:28.
- * desc :
+ * desc :Component 这个是连接的桥梁  连接是module和 Inject
  * action:
  */
 @ActivityScope

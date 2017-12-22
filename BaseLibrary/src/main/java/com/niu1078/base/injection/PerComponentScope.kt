@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy.RUNTIME
 /**
  * author :ywq .
  * time: 2017/12/14:10:39.
- * desc :
+ * desc :作用域
  * action:
  */
 @Scope

@@ -14,7 +14,6 @@ import com.niu1078.base.ext.convertBoolean
 class UserServiceImpl @Inject constructor() : UserService {
     @Inject
     lateinit var repository: UserRepository
-
     /**
      * login
      */

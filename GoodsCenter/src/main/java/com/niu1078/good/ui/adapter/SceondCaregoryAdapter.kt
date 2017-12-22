@@ -34,7 +34,7 @@ class SceondCaregoryAdapter(context: Context) : BaseRecyclerViewAdapter<Category
         super.onBindViewHolder(holder, position)
         val category = dataList[position]
        holder.itemView.mCategoryIconIv.loadUrl(category.categoryIcon)
-       holder.itemView.mCategoryTitleTv.text = category.categoryName
+       holder.itemView.mSecondCategoryNameTv.text = category.categoryName
 
     }
 
