@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#f3f3f3"
+    android:orientation="horizontal">
+
+   <LinearLayout
+       android:orientation="horizontal"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+
+       <View
+           android:id="@+id/view1"
+           android:layout_width="@dimen/dp_2"
+           android:layout_height="wrap_content" />
+
+       <LinearLayout
+           android:id="@+id/goods"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_4"
+
+           android:background="@color/colorPrimary"
+           android:orientation="vertical">
+
+           <ImageView
+               android:id="@+id/IvGoodsImg"
+               android:layout_width="@dimen/dp_178"
+               android:layout_height="@dimen/dp_178"
+               android:layout_gravity="center"
+               android:scaleType="fitXY"
+                />
+
+           <TextView
+               android:id="@+id/tvName"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/dp_5"
+               android:gravity="center_vertical"
+               android:lines="1"
+               android:paddingLeft="@dimen/dp_12"
+               android:paddingRight="@dimen/dp_12"
+               android:textColor="#333333"
+               android:textSize="@dimen/sp_13" />
+
+           <android.support.v4.widget.Space
+               android:layout_width="wrap_content"
+               android:layout_height="@dimen/dp_7_5" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center_vertical"
+               android:orientation="horizontal"
+               android:paddingBottom="@dimen/dp_10"
+               android:paddingLeft="@dimen/dp_12">
+
+
+               <TextView
+
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center_vertical"
+                   android:text="¥"
+                   android:textColor="#ff6248"
+                   android:textSize="@dimen/sp_12" />
+
+               <TextView
+                   android:id="@+id/tvPrice"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center_vertical"
+                   android:text="285"
+                   android:textColor="#ff6248"
+                   android:textSize="@dimen/sp_12" />
+
+
+
+               <TextView
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:id="@+id/tvXiaoLiang"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+
+                   android:layout_marginLeft="@dimen/dp_10"
+                   android:text="销量 "
+                   android:padding="@dimen/dp_2"
+                   android:textColor="#333333"
+                   android:textSize="@dimen/sp_8" />
+               <TextView
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:id="@+id/tvKuCun"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+
+                   android:layout_marginLeft="@dimen/dp_10"
+                   android:text="库存 "
+                   android:padding="@dimen/dp_2"
+                   android:textColor="#333333"
+                   android:textSize="@dimen/sp_8" />
+           </LinearLayout>
+
+
+       </LinearLayout>
+
+       <View
+           android:id="@+id/view2"
+           android:layout_width="@dimen/dp_2"
+           android:layout_height="wrap_content" />
+   </LinearLayout>
+
+
+
+</LinearLayout>

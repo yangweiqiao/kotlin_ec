@@ -104,7 +104,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
         val time2 = System.currentTimeMillis()
         if (time2 - time > 2000) {
 
-            toast("再按一次退出 ")
+            toast("再按一次退出... ")
             time = time2
         } else {
             AppManager.instance.exitApp(this)

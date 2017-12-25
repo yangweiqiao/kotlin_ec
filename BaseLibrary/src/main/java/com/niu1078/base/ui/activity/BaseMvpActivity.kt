@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.niu1078.base.common.BaseApplication
 import com.niu1078.base.injection.Component.ActivityComponent
 import com.niu1078.base.injection.Component.DaggerActivityComponent
+
 import com.niu1078.base.injection.module.ActivityModule
 import com.niu1078.base.injection.module.LifecycleProviderModule
 import com.niu1078.base.presenter.BasePresenter
@@ -29,6 +30,8 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     abstract fun injectComponent()
 
     private fun initActivityInject() {
+
+
         activityComponent = DaggerActivityComponent.builder().appComponent((application as BaseApplication)
                 .APPComponent).lifecycleProviderModule(LifecycleProviderModule(this)).activityModule(ActivityModule(this)).build()
     }

@@ -11,12 +11,14 @@ open class BaseActivity : RxAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //入栈
         AppManager.instance.addActivity(this)
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
+        //出栈
         AppManager.instance.finishActivity(this)
 
     }

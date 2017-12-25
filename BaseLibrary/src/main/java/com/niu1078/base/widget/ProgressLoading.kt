@@ -12,14 +12,15 @@ import org.jetbrains.anko.find
 /**
  * author :ywq .
  * time: 2017/12/14:14:22.
- * desc :
- * action:
+ * desc :ProgressLoading
+ * action:   自定义加载对话框  继承系统的对话框
  */
-class ProgressLoading private constructor(context: Context, themeResId: Int)  : Dialog(context, themeResId) {
+class ProgressLoading private constructor(context: Context, themeResId: Int) : Dialog(context, themeResId) {
     //使用2个参数的构造方法
     companion object {
         private lateinit var mDialog: ProgressLoading
         private var animDrawable: AnimationDrawable? = null
+        //相当是java里面的静态方法
         fun creat(context: Context): ProgressLoading {
             mDialog = ProgressLoading(context, R.style.LightProgressDialog)
             mDialog.setContentView(R.layout.progress_dialog)

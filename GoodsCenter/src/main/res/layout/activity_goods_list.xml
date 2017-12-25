@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.niu1078.good.ui.activity.GoodsListActivity">
+<com.niu1078.base.widget.HeaderBar
+    android:layout_width="match_parent"
+    app:titleText="商品列表"
+    android:layout_height="@dimen/dp_44">
+
+
+</com.niu1078.base.widget.HeaderBar>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mGoodsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

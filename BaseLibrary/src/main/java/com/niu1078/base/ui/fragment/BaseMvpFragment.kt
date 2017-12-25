@@ -15,7 +15,7 @@ import javax.inject.Inject
  * Created by Administrator on 2017/12/12.
  */
 abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
-    lateinit var activityComponent: ActivityComponent
+    lateinit var fragmentComponent: ActivityComponent
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,8 +26,10 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
    abstract fun  injectComponent()
 
     private fun initActivityInject() {
-        activityComponent = DaggerActivityComponent.builder().appComponent((activity.application as BaseApplication)
-                .APPComponent).lifecycleProviderModule(LifecycleProviderModule(this)).activityModule(ActivityModule(activity)).build()
+        fragmentComponent = DaggerActivityComponent.builder().appComponent((activity.application as BaseApplication)
+                .APPComponent).lifecycleProviderModule(LifecycleProviderModule(this)).activityModule(ActivityModule(activity)) .build()
+
+
     }
     override fun showLoading() {
 

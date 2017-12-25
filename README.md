@@ -194,8 +194,167 @@
     通过监听Activity,Fragment的生命周期,自动断开Rx连接
 ## AppManager
     1.提供了app中Activity的管理
+    实现自己的栈结构
+    用单例实现 私有的构造方法+伴生对象
+    class AppManager private constructor() {
+         //实例化 stack
+        private val activityStack: Stack<Activity> = Stack()
+
+        companion object {
+
+            val instance: AppManager by lazy { AppManager() }
+
+        }
+     //入栈的方法
+      fun addActivity(activity: Activity) {
+             activityStack.add(activity)
+         }
+
+         //出栈
+         fun finishActivity(activity: Activity) {
+             activity.finish()
+             activityStack.remove(activity)
+         }
+         //获取当前栈顶的activity
+         fun currentActivity(): Activity {
+             //最后一个元素 压栈的形式 所以最后一个就是在栈顶的
+             return activityStack.lastElement()
+         }
+
+         // 清理所有栈 出栈
+         fun finishAllActivity() {
+             for (activity in activityStack) { //循环
+                 activity.finish()
+             }
+             activityStack.clear()
+         }
+
+
+     @SuppressLint("MissingPermission")
+     //退出app
+         fun exitApp(context: Context) {
+             finishAllActivity()
+             val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+             activityManager.killBackgroundProcesses(context.packageName)
+             System.exit(0)
+         }
+     }
+
+   直接放在baseActivity中
+    双击退出App的方法
+
+             //监听返回按键的事件
+             override fun onBackPressed() {
+             //获取当前的时间 time2
+              val time2 = System.currentTimeMillis()
+              //当前的时间 - 上次点击的时间
+              if (time2 - time(上次点击的时间) > 2000) {
+
+                toast("再按一次退出... ")
+                //这是第一次进来 把当前的时间赋值给点击的时间 用作下次点击判断时间差
+                time = time2
+            } else {
+            //如果在2秒钟之内 退出App
+                AppManager.instance.exitApp(this)
+            }
+
+
+        }
+
+
 ## HeaderBar的封装
     通过自定义控件封装顶部导航栏
+    1.layout文件
+    <?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_header_bar_height">
+      //左边 布局 一般是返回按钮
+        <ImageView android:id="@+id/mLeftIv"
+                   android:paddingLeft="@dimen/common_padding"
+                   android:paddingRight="@dimen/common_padding"
+                   style="@style/WrapMatch"
+                   android:src="@drawable/icon_back"/>
+       //标题
+        <TextView
+                android:id="@+id/mTitleTv"
+                android:textSize="@dimen/text_large_size"
+                android:textColor="#333333"
+                style="@style/WrapWrap"
+                android:layout_centerInParent="true"/>
+        //右布局 一般是消息 之类的
+        <TextView
+                android:id="@+id/mRightTv"
+                style="@style/WrapMatch"
+                android:textColor="@color/common_black"
+                android:gravity="center"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding"
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    2.自定义布局
+    class HeaderBar @JvmOverloads constructor(
+              context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+      ) : FrameLayout(context, attrs, defStyleAttr) {
+      //重写构造方法  在java里面 我们一般是重写三个构造方法
+      //在kotlin中 我们可以使用@JvmOverloads constructor(
+                          //           context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+                        //     )   后面的两个参数  我们不传的可以使用的是默认值
+          //定义一些变量
+          private var isShowback = true
+          private var titleText: String? = null
+          private var rightText: String? = null
+
+          //初始化 在init方法中 初始化布局  设置style
+          init {
+          //自定义属性
+              val typedArray = context.obtainStyledAttributes(attrs, R.styleable.HeaderBar)
+              //取出在布局中定义的属性
+              isShowback = typedArray.getBoolean(R.styleable.HeaderBar_isShowBack, true)
+              titleText = typedArray.getString(R.styleable.HeaderBar_titleText)
+              rightText = typedArray.getString(R.styleable.HeaderBar_rightText)
+              initView()
+              typedArray.recycle()
+
+          }
+      //初始化控件的方法
+          private fun initView() {
+          //填充布局
+              View.inflate(context, R.layout.layout_header_bar, this)
+              mLeftIv.visibility = if (isShowback) View.VISIBLE else View.INVISIBLE
+              titleText?.let {
+                  mTitleTv.text = it
+              }
+              rightText?.let {
+                  mRightTv.text = it
+                  mRightTv.visibility = View.VISIBLE
+              }
+
+              mLeftIv.onClick {
+
+                  if (context is Activity)
+                      (context as Activity).finish()
+              }
+
+          }
+
+
+          fun getRightView(): TextView {
+              return mRightTv
+          }
+
+      }
+        自定义属性
+            <declare-styleable name="HeaderBar">
+                <attr name="isShowBack" format="boolean" />
+                <attr name="titleText" format="string" />
+                <attr name="rightText" format="string" />
+            </declare-styleable>
+
+
 ## ProgressLoading的封装
 ## 用户注册
 ## 用户登录
@@ -230,5 +389,5 @@
        　　java version "1.8.0_151"
        　　Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
        　　Java HotSpot(TM) Client VM (build 25.60-b23, mixed mode)
-#### 安装tomcat
+
        
