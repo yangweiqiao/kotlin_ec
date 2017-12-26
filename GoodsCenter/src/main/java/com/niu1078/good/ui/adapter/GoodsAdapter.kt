@@ -1,11 +1,13 @@
 package com.niu1078.good.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.kotlin.base.utils.YuanFenConverter
 import com.niu1078.base.ext.loadUrl
 import com.niu1078.good.R
 import com.niu1078.good.data.protocol.Category
@@ -27,6 +29,7 @@ class GoodsAdapter(context: Context) : BaseRecyclerViewAdapter<Goods, GoodsAdapt
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
         val goods = dataList[position]
@@ -34,7 +37,7 @@ class GoodsAdapter(context: Context) : BaseRecyclerViewAdapter<Goods, GoodsAdapt
 
         holder.itemView.IvGoodsImg.loadUrl(goods.goodsDefaultIcon)
         holder.itemView.tvName.text = goods.goodsDesc
-        holder.itemView.tvPrice.text = goods.goodsDefaultPrice.toString()
+        holder.itemView.tvPrice.text =YuanFenConverter.changeF2YWithUnit(goods.goodsDefaultPrice)
         holder.itemView.tvXiaoLiang.text = "销量:${goods.goodsSalesCount}"
         holder.itemView.tvKuCun.text = "库存:${goods.goodsStockCount}"
 

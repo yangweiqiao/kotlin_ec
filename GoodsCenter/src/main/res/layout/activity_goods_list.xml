@@ -6,20 +6,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.niu1078.good.ui.activity.GoodsListActivity">
-<com.niu1078.base.widget.HeaderBar
-    android:layout_width="match_parent"
-    app:titleText="商品列表"
-    android:layout_height="@dimen/dp_44">
+
+    <com.niu1078.base.widget.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        app:titleText="商品列表">
 
 
-</com.niu1078.base.widget.HeaderBar>
+    </com.niu1078.base.widget.HeaderBar>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mGoodsRecyclerView"
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mBGARefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mGoodsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    </android.support.v7.widget.RecyclerView>
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+
 </LinearLayout>

@@ -58,14 +58,7 @@
                android:paddingLeft="@dimen/dp_12">
 
 
-               <TextView
 
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:gravity="center_vertical"
-                   android:text="¥"
-                   android:textColor="#ff6248"
-                   android:textSize="@dimen/sp_12" />
 
                <TextView
                    android:id="@+id/tvPrice"
