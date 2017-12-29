@@ -1,12 +1,17 @@
 package com.niu1078.good.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.kotlin.base.utils.YuanFenConverter
+import com.niu1078.base.ext.loadUrl
 import com.niu1078.base.ext.myToast
 import com.niu1078.base.ext.onClick
 import com.niu1078.base.ui.activity.BaseActivity
@@ -16,6 +21,7 @@ import com.niu1078.good.R
 import com.niu1078.good.data.protocol.Goods
 import com.niu1078.good.data.protocol.GoodsSku
 import com.niu1078.good.event.GoodsDetailImageEvent
+import com.niu1078.good.event.SkuChangedEvent
 import com.niu1078.good.injection.component.DaggerGoodsComponent
 import com.niu1078.good.injection.module.GoodsModule
 import com.niu1078.good.presenter.p.GoodsDetailPresenter
@@ -26,6 +32,7 @@ import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.activity_goods_detail.*
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
+import kotlinx.android.synthetic.main.fragment_goods_detail_tab_two.*
 import org.jetbrains.anko.contentView
 
 
@@ -47,14 +54,20 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initAnima()
         initPop()
         loadData()
-
+        initObserve()
     }
 private  lateinit var mSkuPop: GoodsSkuPopView
     private fun initPop() {
 
         mSkuPop = GoodsSkuPopView(activity)
+        mSkuPop.setOnDismissListener {
+
+            (activity as BaseActivity).contentView.startAnimation(scaleAnimationEnd)
+
+        }
     }
 
     override fun injectComponent() {
@@ -73,6 +86,8 @@ private  lateinit var mSkuPop: GoodsSkuPopView
             mSkuPop.showAtLocation((activity as BaseActivity).contentView ,
                     Gravity.BOTTOM and  Gravity.CENTER_HORIZONTAL,0,0
                     )
+            (activity as BaseActivity).contentView.startAnimation(scaleAnimationStart)
+
         }
     }
 
@@ -95,11 +110,45 @@ private  lateinit var mSkuPop: GoodsSkuPopView
         loadPopData(result)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadPopData(result: Goods) {
 
         mSkuPop.setGoodsIcon(result.goodsDefaultIcon)
         mSkuPop.setGoodsCode(result.goodsCode)
         mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
         mSkuPop.setSkuData(result.goodsSku)
+
+
+
+
+
+    }
+
+    private fun initObserve() {
+        Bus.observe<SkuChangedEvent>().subscribe {
+
+            mSkuSelectedTv.text = "${mSkuPop.getSelectSku()}      ${mSkuPop.getSelectCount()}件"
+
+        }.registerInBus(this)
+
+    }
+
+private  lateinit var scaleAnimationStart:Animation
+private  lateinit var scaleAnimationEnd:Animation
+   private fun initAnima(){
+       scaleAnimationStart   = ScaleAnimation(1f, 0.95f, 1f, 0.95f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+
+       scaleAnimationStart.duration=500
+       scaleAnimationStart.fillAfter=true
+         scaleAnimationEnd = ScaleAnimation(0.95f,1f, 0.95f, 1f,  Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+
+       scaleAnimationEnd.duration=500
+       scaleAnimationEnd.fillAfter=true
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }
