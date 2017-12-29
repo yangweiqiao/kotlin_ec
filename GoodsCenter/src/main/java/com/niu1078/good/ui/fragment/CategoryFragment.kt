@@ -40,13 +40,9 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
     lateinit var topCaregoryAdapter: CaregoryAdapter
     lateinit var sceondCaregoryAdapter: SceondCaregoryAdapter
     override fun injectComponent() {
-        //  DaggerUserComponent.builder().activityComponent(activityComponent).uSerModule(USerModule()).build().inject(this)
         DaggerCategoryComponent.builder().activityComponent(fragmentComponent).categoryModule(CategoryModule()).build().inject(this)
-
         mPresenter.mView = this
-
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -66,7 +62,6 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_LOADING
             val loadingView = mMultiStateView.getView(MultiStateView.VIEW_STATE_LOADING)
             val background = loadingView!!.find<View>(R.id.loading_anim_view).background
-
             background as AnimationDrawable
             background.start()
         }

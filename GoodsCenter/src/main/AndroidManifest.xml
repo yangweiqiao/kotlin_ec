@@ -3,7 +3,8 @@
     package="com.niu1078.good">
 
     <application>
-        <activity android:name=".ui.activity.GoodsListActivity"></activity>
+        <activity android:name=".ui.activity.GoodsListActivity"/>
+        <activity android:name=".ui.activity.GoodsDetailActivity" />
     </application>
 
 </manifest>

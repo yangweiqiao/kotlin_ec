@@ -15,6 +15,7 @@ import com.niu1078.good.presenter.p.GoodsListPresenter
 import com.niu1078.good.presenter.view.GoodsListView
 import com.niu1078.good.ui.adapter.GoodsAdapter
 import kotlinx.android.synthetic.main.activity_goods_list.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class GoodsListActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, BGARefreshLayout.BGARefreshLayoutDelegate {
@@ -37,7 +38,7 @@ class GoodsListActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, 
     }
 
     private fun initRefreshLayout() {
-mBGARefreshLayout.setDelegate(this)
+        mBGARefreshLayout.setDelegate(this)
         val bgaRefreshViewHolder = BGANormalRefreshViewHolder(this, true)
         bgaRefreshViewHolder.setLoadMoreBackgroundColorRes(R.color.common_bg)
         bgaRefreshViewHolder.setRefreshViewBackgroundColorRes(R.color.common_bg)
@@ -49,6 +50,7 @@ mBGARefreshLayout.setDelegate(this)
 
         mPresenter.getGoodsList(intent.getIntExtra("id", 0), mCurrentPage)
     }
+
     private fun initDatabyKeyWord() {
         mPresenter.getGoodsListByKeyWord("", mCurrentPage)
     }
@@ -63,22 +65,21 @@ mBGARefreshLayout.setDelegate(this)
             override fun onItemClick(item: Goods, position: Int) {
                 toast(item.goodsDesc)
 
-
+startActivity<GoodsDetailActivity>("id" to item.id)
             }
         })
 
     }
 
     override fun onGetGoodsListResult(result: MutableList<Goods>?) {
-mBGARefreshLayout.endLoadingMore()
+        mBGARefreshLayout.endLoadingMore()
         mBGARefreshLayout.endRefreshing()
         result?.let {
-
-           mMaxPage= result[0].maxPage
-            if (mCurrentPage!=1){
-             goodsAdapter.dataList.addAll(result!!)
+            mMaxPage = result[0].maxPage
+            if (mCurrentPage != 1) {
+                goodsAdapter.dataList.addAll(result)
                 goodsAdapter.setData(goodsAdapter.dataList)
-            }else{
+            } else {
                 goodsAdapter.setData(result)
             }
         }
@@ -97,7 +98,7 @@ mBGARefreshLayout.endLoadingMore()
     }
 
     override fun onBGARefreshLayoutBeginRefreshing(refreshLayout: BGARefreshLayout?) {
-        mCurrentPage=1
+        mCurrentPage = 1
         initData()
     }
 
