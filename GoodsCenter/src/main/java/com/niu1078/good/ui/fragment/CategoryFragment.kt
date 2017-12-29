@@ -83,6 +83,7 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
                 for (category in topCaregoryAdapter.dataList) {
                     category.isSelected = item.id == category.id
                 }
+
                 loadData(item.id)
                 topCaregoryAdapter.notifyDataSetChanged()
             }
