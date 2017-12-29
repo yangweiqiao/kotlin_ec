@@ -37,4 +37,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     compile project(':Provider')
+
+
+
+    compile 'ren.qinc.numberbutton:numberbutton:0.0.1'
 }

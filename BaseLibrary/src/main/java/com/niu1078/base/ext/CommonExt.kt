@@ -1,5 +1,6 @@
 package com.niu1078.base.ext
 
+import android.content.Context
 import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,7 +15,9 @@ import com.niu1078.base.rx.BaseFunData
 import com.niu1078.base.rx.BaseSubscriber
 import com.trello.rxlifecycle.LifecycleProvider
 import org.jetbrains.anko.backgroundResource
+import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.textColorResource
+import org.jetbrains.anko.toast
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -89,4 +92,14 @@ fun TextView.enable(et:EditText,method: () -> Boolean){
  */
 fun ImageView.loadUrl(url: String) {
     GlideUtils.loadUrlImage(context, url, this)
+}
+/*
+    toast的扩展方法
+ */
+fun Context.myToast(msg: String) {
+
+    runOnUiThread {
+        toast(msg)
+    }
+
 }

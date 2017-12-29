@@ -64,7 +64,6 @@ class GoodsListActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, 
         goodsAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Goods> {
             override fun onItemClick(item: Goods, position: Int) {
                 toast(item.goodsDesc)
-
 startActivity<GoodsDetailActivity>("id" to item.id)
             }
         })
