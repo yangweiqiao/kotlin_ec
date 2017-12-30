@@ -73,7 +73,8 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     }
 
-    //界面销毁的时候  注意的是bus事件的销毁
+    //界面销毁的时候
+    // 注意的是bus事件的销毁
     override fun onDestroy() {
         super.onDestroy()
         Bus.unregister(this)
