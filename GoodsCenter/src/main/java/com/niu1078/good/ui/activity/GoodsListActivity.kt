@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout
-import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.niu1078.base.common.BaseApplication.Companion.context
 import com.niu1078.base.ui.activity.BaseMvpActivity
@@ -18,6 +17,12 @@ import kotlinx.android.synthetic.main.activity_goods_list.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
+/**
+ * author :ywq .
+ * time: 2017/12/29:16:28.
+ * desc :商品列表的界面
+ * action: 实现根据父级的分类id 或者是关键字去获取商品的列表
+ */
 class GoodsListActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, BGARefreshLayout.BGARefreshLayoutDelegate {
     lateinit var goodsAdapter: GoodsAdapter
     var mCurrentPage: Int = 1
@@ -64,7 +69,8 @@ class GoodsListActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, 
         goodsAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Goods> {
             override fun onItemClick(item: Goods, position: Int) {
                 toast(item.goodsDesc)
-startActivity<GoodsDetailActivity>("id" to item.id)
+                //点击跳转到商品详情界面 需要传递的参数是商品的id
+                startActivity<GoodsDetailActivity>("id" to item.id)
             }
         })
 
@@ -86,6 +92,7 @@ startActivity<GoodsDetailActivity>("id" to item.id)
 
     }
 
+    //分页加载
     override fun onBGARefreshLayoutBeginLoadingMore(refreshLayout: BGARefreshLayout?): Boolean {
         return if (mCurrentPage >= mMaxPage) {
             false

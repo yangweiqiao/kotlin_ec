@@ -1,5 +1,6 @@
 package com.niu1078.base.data.net
 
+import com.kotlin.base.utils.AppPrefsUtils
 import com.niu1078.base.common.BaseConstant
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -28,11 +29,11 @@ class RetrofitFactory private constructor() {
     init {
         intereceptor = Interceptor { chain ->
             val request = chain.request().newBuilder()
-                    // .addHeader("","")
+                    .addHeader("token",AppPrefsUtils.getString(BaseConstant.KEY_SP_TOKEN))
                     .build()
             chain.proceed(request)
 
-
+//  AppPrefsUtils.putString(BaseConstant.KEY_SP_TOKEN,
         }
 
         retrofit = Retrofit.Builder()

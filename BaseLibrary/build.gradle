@@ -117,7 +117,7 @@ dependencies {
 
         compile 'com.zhy:flowlayout-lib:1.0.3'
 
-        //ARouter
+        //ARouter 路由 跨模块
 
         compile "com.alibaba:arouter-api:$arouter_api_version"
 

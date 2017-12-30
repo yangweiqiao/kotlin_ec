@@ -9,9 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.niu1078.base.common.BaseApplication
-import com.niu1078.base.injection.module.FragmentModule
-import com.niu1078.base.ui.fragment.BaseFragment
 import com.niu1078.base.ui.fragment.BaseMvpFragment
 import com.niu1078.good.R
 import com.niu1078.good.data.protocol.Category
@@ -97,7 +94,9 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
         sceondCaregoryAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Category> {
             override fun onItemClick(item: Category, position: Int) {
                 toast(item.categoryName)
-
+/*
+点击条目跳转到商品列表界面 需要传递的参数是商品的分类id
+ */
                 startActivity<GoodsListActivity>("id" to item.id)
 
             }

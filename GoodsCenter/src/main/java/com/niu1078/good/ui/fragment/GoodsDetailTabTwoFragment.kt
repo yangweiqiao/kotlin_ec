@@ -8,19 +8,15 @@ import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.niu1078.base.ext.loadUrl
 import com.niu1078.base.ui.fragment.BaseFragment
-import com.niu1078.base.ui.fragment.BaseMvpFragment
 import com.niu1078.good.R
-import com.niu1078.good.data.protocol.Goods
 import com.niu1078.good.event.GoodsDetailImageEvent
-import com.niu1078.good.presenter.p.GoodsDetailPresenter
-import com.niu1078.good.presenter.view.GoodsDetailView
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_two.*
 
 /**
  * author :ywq .
  * time: 2017/12/29:16:59.
- * desc :
- * action:
+ * desc :商品详情第一个界面
+ * action:商品详情
  */
 class GoodsDetailTabTwoFragment : BaseFragment () {
 

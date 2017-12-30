@@ -10,10 +10,8 @@ import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.kotlin.base.utils.YuanFenConverter
 import com.niu1078.base.ext.loadUrl
 import com.niu1078.good.R
-import com.niu1078.good.data.protocol.Category
 import com.niu1078.good.data.protocol.Goods
 import kotlinx.android.synthetic.main.item_goods.view.*
-import kotlinx.android.synthetic.main.layout_second_category_item.view.*
 
 /**
  * author :ywq .

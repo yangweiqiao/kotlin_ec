@@ -8,7 +8,7 @@ import dagger.Provides
 /**
  * author :ywq .
  * time: 2017/12/25:16:28.
- * desc :
+ * desc :分类 module
  * action:
  */
 @Module

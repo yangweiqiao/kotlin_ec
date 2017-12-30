@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * author :ywq .
  * time: 2017/12/25:16:28.
- * desc :
+ * desc :  分类 业务层 实现类
  * action:
  */
 class CategoryServiceImpl @Inject constructor() :CategoryService{

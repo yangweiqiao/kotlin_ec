@@ -1,9 +1,6 @@
 package com.niu1078.good.event
 
-/**
- * author :ywq .
- * time: 2017/12/29:18:36.
- * desc :
- * action:
+/*
+商品详情图片事件发送
  */
 class GoodsDetailImageEvent(val imageOne :String  ,val imageTwo :String)

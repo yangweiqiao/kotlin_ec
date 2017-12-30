@@ -6,7 +6,7 @@ import rx.Observable
 /**
  * author :ywq .
  * time: 2017/12/25:16:27.
- * desc :
+ * desc :分类 业务层 接口
  * action:
  */
 interface CategoryService {

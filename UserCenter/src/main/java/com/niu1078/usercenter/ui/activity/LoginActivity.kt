@@ -1,11 +1,13 @@
 package com.niu1078.usercenter.ui.activity
 
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.kotlin.user.data.protocol.UserInfo
 import com.kotlin.user.utils.UserPrefsUtils
 import com.niu1078.base.ext.enable
 import com.niu1078.base.ext.onClick
 import com.niu1078.base.ui.activity.BaseMvpActivity
+import com.niu1078.provider.router.RouterPath
 import com.niu1078.usercenter.R
 import com.niu1078.usercenter.injection.component.DaggerUserComponent
 import com.niu1078.usercenter.injection.module.USerModule
@@ -18,9 +20,10 @@ import org.jetbrains.anko.toast
 /**
  * author :ywq .
  * time: 2017/12/14:18:42.
- * desc :
+ * desc :登录界面
  * action:
  */
+@Route(path=RouterPath.userCenter.path_login)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
     override fun onLoginResult(result: UserInfo) {
         UserPrefsUtils.putUserInfo(result)

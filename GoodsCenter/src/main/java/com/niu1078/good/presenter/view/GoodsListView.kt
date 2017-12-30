@@ -6,7 +6,7 @@ import com.niu1078.good.data.protocol.Goods
 /**
  * author :ywq .
  * time: 2017/12/25:19:28.
- * desc :
+ * desc :商品列表   view
  * action:
  */
 interface GoodsListView:BaseView {

@@ -10,12 +10,10 @@ import javax.inject.Inject
 /**
  * author :ywq .
  * time: 2017/12/25:20:03.
- * desc :
+ * desc :  商品 业务层 实现类
  * action:
  */
-/*
-    商品 业务层 实现类
- */
+
 class GoodsServiceImpl @Inject constructor(): GoodsService {
 
     @Inject

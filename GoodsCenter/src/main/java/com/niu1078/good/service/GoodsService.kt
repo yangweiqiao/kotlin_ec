@@ -6,12 +6,10 @@ import rx.Observable
 /**
  * author :ywq .
  * time: 2017/12/25:20:02.
- * desc :
+ * desc :商品 业务层 接口
  * action:
  */
-/*
-    商品 业务层 接口
- */
+
 interface GoodsService {
 
     /*

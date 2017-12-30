@@ -11,38 +11,37 @@ import android.view.animation.ScaleAnimation
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kotlin.base.utils.YuanFenConverter
-import com.niu1078.base.ext.loadUrl
-import com.niu1078.base.ext.myToast
 import com.niu1078.base.ext.onClick
 import com.niu1078.base.ui.activity.BaseActivity
 import com.niu1078.base.ui.fragment.BaseMvpFragment
 import com.niu1078.base.widget.BannerImageLoader
 import com.niu1078.good.R
 import com.niu1078.good.data.protocol.Goods
-import com.niu1078.good.data.protocol.GoodsSku
+import com.niu1078.good.event.AddCartEvent
 import com.niu1078.good.event.GoodsDetailImageEvent
 import com.niu1078.good.event.SkuChangedEvent
+import com.niu1078.good.event.UpdateCartSizeEvent
 import com.niu1078.good.injection.component.DaggerGoodsComponent
 import com.niu1078.good.injection.module.GoodsModule
 import com.niu1078.good.presenter.p.GoodsDetailPresenter
 import com.niu1078.good.presenter.view.GoodsDetailView
-import com.niu1078.good.ui.activity.GoodsDetailActivity
 import com.niu1078.good.widget.GoodsSkuPopView
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
-import kotlinx.android.synthetic.main.activity_goods_detail.*
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
-import kotlinx.android.synthetic.main.fragment_goods_detail_tab_two.*
-import org.jetbrains.anko.contentView
 
 
 /**
  * author :ywq .
  * time: 2017/12/29:16:59.
- * desc :
- * action:
+ * desc :商品详情第一个界面
+ * action:商品的基本信息
  */
 class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), GoodsDetailView {
+    override fun onAddCartResult(count: Int) {
+        println("购物车数量发生了变化:$count")
+        Bus.send(UpdateCartSizeEvent())
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -59,7 +58,8 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         loadData()
         initObserve()
     }
-private  lateinit var mSkuPop: GoodsSkuPopView
+
+    private lateinit var mSkuPop: GoodsSkuPopView
     private fun initPop() {
 
         mSkuPop = GoodsSkuPopView(activity)
@@ -83,9 +83,9 @@ private  lateinit var mSkuPop: GoodsSkuPopView
 
         mSkuView.onClick {
 
-            mSkuPop.showAtLocation((activity as BaseActivity).contentView ,
-                    Gravity.BOTTOM and  Gravity.CENTER_HORIZONTAL,0,0
-                    )
+            mSkuPop.showAtLocation((activity as BaseActivity).contentView,
+                    Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL, 0, 0
+            )
             (activity as BaseActivity).contentView.startAnimation(scaleAnimationStart)
 
         }
@@ -94,7 +94,6 @@ private  lateinit var mSkuPop: GoodsSkuPopView
     fun loadData() {
         mPresenter.getGoodsDetail(activity.intent.getIntExtra("id", -1))
     }
-
 
 
     override fun onGoodsDetailResult(result: Goods) {
@@ -109,17 +108,14 @@ private  lateinit var mSkuPop: GoodsSkuPopView
 
         loadPopData(result)
     }
-
+private lateinit var goods:Goods
     @SuppressLint("SetTextI18n")
     private fun loadPopData(result: Goods) {
-
+        goods=result
         mSkuPop.setGoodsIcon(result.goodsDefaultIcon)
         mSkuPop.setGoodsCode(result.goodsCode)
         mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
         mSkuPop.setSkuData(result.goodsSku)
-
-
-
 
 
     }
@@ -129,21 +125,34 @@ private  lateinit var mSkuPop: GoodsSkuPopView
 
             mSkuSelectedTv.text = "${mSkuPop.getSelectSku()}      ${mSkuPop.getSelectCount()}件"
 
-        }.registerInBus(this)
+        }
+
+                .registerInBus(this)
+
+        Bus.observe<AddCartEvent>()
+                .subscribe {
+                    addCart()
+                }
+                .registerInBus(this)
+    }
+
+    private fun addCart() {
+
+        mPresenter.addCart(goods.id,goods.goodsDesc,goods.goodsDefaultIcon,goods.goodsDefaultPrice,mSkuPop.getSelectCount(),mSkuPop.getSelectSku())
 
     }
 
-private  lateinit var scaleAnimationStart:Animation
-private  lateinit var scaleAnimationEnd:Animation
-   private fun initAnima(){
-       scaleAnimationStart   = ScaleAnimation(1f, 0.95f, 1f, 0.95f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+    private lateinit var scaleAnimationStart: Animation
+    private lateinit var scaleAnimationEnd: Animation
+    private fun initAnima() {
+        scaleAnimationStart = ScaleAnimation(1f, 0.95f, 1f, 0.95f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
 
-       scaleAnimationStart.duration=500
-       scaleAnimationStart.fillAfter=true
-         scaleAnimationEnd = ScaleAnimation(0.95f,1f, 0.95f, 1f,  Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        scaleAnimationStart.duration = 500
+        scaleAnimationStart.fillAfter = true
+        scaleAnimationEnd = ScaleAnimation(0.95f, 1f, 0.95f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
 
-       scaleAnimationEnd.duration=500
-       scaleAnimationEnd.fillAfter=true
+        scaleAnimationEnd.duration = 500
+        scaleAnimationEnd.fillAfter = true
     }
 
 

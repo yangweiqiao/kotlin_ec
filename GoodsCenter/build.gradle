@@ -4,6 +4,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
+kapt{
+    arguments{
+        arg("moduleName",Project.getName())
+    }
+}
 android {
     compileSdkVersion 26
 
@@ -37,7 +43,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     compile project(':Provider')
-
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 
 
     compile 'ren.qinc.numberbutton:numberbutton:0.0.1'

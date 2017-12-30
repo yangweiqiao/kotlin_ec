@@ -6,7 +6,7 @@ import com.niu1078.good.data.protocol.Category
 /**
  * author :ywq .
  * time: 2017/12/25:16:19.
- * desc :
+ * desc :分类 view
  * action:
  */
 interface CategoryView : BaseView {

@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup.LayoutParams
-import android.widget.*
+import android.widget.PopupWindow
+import android.widget.RelativeLayout
 import com.eightbitlab.rxbus.Bus
-
 import com.kotlin.base.utils.YuanFenConverter
 import com.kotlin.base.widgets.DefaultTextWatcher
 import com.kotlin.goods.getEditText
-
 import com.kotlin.goods.widget.SkuView
 import com.niu1078.base.ext.loadUrl
 import com.niu1078.base.ext.onClick

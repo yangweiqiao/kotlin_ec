@@ -2,6 +2,7 @@ package com.niu1078.base.common
 
 import android.app.Application
 import android.content.Context
+import com.alibaba.android.arouter.launcher.ARouter
 import com.niu1078.base.injection.Component.AppComponent
 import com.niu1078.base.injection.Component.DaggerAppComponent
 import com.niu1078.base.injection.module.AppModule
@@ -18,7 +19,19 @@ class BaseApplication : Application() {
         super.onCreate()
         context = this
         initAPPInject()
+/*
+初始化路由
+ */
+        if (isDebug()) {
+            ARouter.openLog()
+            ARouter.openDebug()
+        }
+        ARouter.init(this)
 
+    }
+
+    private fun isDebug(): Boolean {
+        return true
     }
 
     private fun initAPPInject() {
@@ -28,6 +41,6 @@ class BaseApplication : Application() {
     }
 
     companion object {
-      lateinit var    context: Context
+        lateinit var context: Context
     }
 }
