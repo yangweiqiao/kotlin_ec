@@ -23,13 +23,6 @@ import com.niu1078.good.presenter.view.CartListView
  * action:
  */
 class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
-    override fun onDeleteCartListResult(result: Boolean) {
-
-    }
-
-    override fun onSubmitCartListResult(result: Int) {
-
-    }
 
     override fun onGetCartListResult(result: MutableList<CartGoods>?) {
 //activity.myToast("购物车列表")
@@ -70,7 +63,6 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
                     mPresenter.getCartList()
                 }
                 .registerInBus(this)
-
     }
 
     //界面销毁的时候
@@ -80,4 +72,11 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         Bus.unregister(this)
     }
 
+    override fun onDeleteCartListResult(result: Boolean) {
+
+    }
+
+    override fun onSubmitCartListResult(result: Int) {
+
+    }
 }

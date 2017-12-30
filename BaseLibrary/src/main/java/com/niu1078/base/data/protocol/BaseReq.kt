@@ -5,4 +5,5 @@ package com.niu1078.base.data.protocol
  */
 open class BaseReq(val appType: String = "1", val device: String = "1") {
     val token: String = appType
+    val time: String = System.currentTimeMillis().toString()
 }
