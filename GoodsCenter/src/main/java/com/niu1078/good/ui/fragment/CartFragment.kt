@@ -21,8 +21,10 @@ import com.niu1078.good.injection.component.DaggerCartComponent
 import com.niu1078.good.injection.module.CartModule
 import com.niu1078.good.presenter.p.CartListPresenter
 import com.niu1078.good.presenter.view.CartListView
+import com.niu1078.good.ui.activity.GoodsDetailActivity
 import com.niu1078.good.ui.adapter.CartAdapter
 import kotlinx.android.synthetic.main.fragment_cart.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * author :ywq .
