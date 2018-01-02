@@ -19,6 +19,4 @@ import dagger.Component
 @Component(dependencies = arrayOf(ActivityComponent::class), modules = arrayOf(CartModule::class))
 interface CartComponent {
     fun inject(fragment: CartFragment)
-
-
 }

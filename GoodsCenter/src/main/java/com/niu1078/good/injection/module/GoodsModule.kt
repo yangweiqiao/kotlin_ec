@@ -21,9 +21,6 @@ class GoodsModule {
     fun provideGoodservice(goodsService: GoodsServiceImpl): GoodsService {
         return goodsService
     }
-    @Provides
-    fun provideCartervice(goodsService: CartServiceImpl): CartService {
-        return goodsService
-    }
+
 
 }

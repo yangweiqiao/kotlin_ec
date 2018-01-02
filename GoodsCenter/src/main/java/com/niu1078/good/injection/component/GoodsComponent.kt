@@ -2,6 +2,7 @@ package com.niu1078.good.injection.component
 
 import com.niu1078.base.injection.Component.ActivityComponent
 import com.niu1078.base.injection.PerComponentScope
+import com.niu1078.good.injection.module.CartModule
 import com.niu1078.good.injection.module.GoodsModule
 import com.niu1078.good.ui.activity.GoodsDetailActivity
 import com.niu1078.good.ui.activity.GoodsListActivity
@@ -18,7 +19,7 @@ import dagger.Component
     商品Component
  */
 @PerComponentScope
-@Component(dependencies = arrayOf(ActivityComponent::class),modules = arrayOf(GoodsModule::class ))
+@Component(dependencies = arrayOf(ActivityComponent::class),modules = arrayOf(GoodsModule::class ,CartModule::class))
 interface GoodsComponent {
     fun inject(activity: GoodsListActivity)
     fun inject(activity: GoodsDetailActivity)

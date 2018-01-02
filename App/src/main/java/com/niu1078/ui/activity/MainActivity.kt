@@ -4,7 +4,13 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
+import com.kotlin.base.utils.AppPrefsUtils
 import com.niu1078.R
+import com.niu1078.base.ext.myToast
+import com.niu1078.good.common.GoodsConstant
+import com.niu1078.good.event.UpdateCartSizeEvent
 import com.niu1078.good.ui.fragment.CartFragment
 import com.niu1078.good.ui.fragment.CategoryFragment
 import com.niu1078.ui.fragment.HomeFragment
@@ -32,6 +38,17 @@ class MainActivity : AppCompatActivity() {
         initFragment()
         initBottomNav()
         changeFragment(0)
+
+
+        initObservice()
+    }
+
+    private fun initObservice() {
+        Bus.observe<UpdateCartSizeEvent>()
+                .subscribe {
+                    mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+                }
+                .registerInBus(this)
     }
 
     private fun initBottomNav() {

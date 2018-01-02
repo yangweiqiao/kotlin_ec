@@ -1,5 +1,6 @@
 package com.niu1078.good.ui.fragment
 
+import afterLogin
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
@@ -8,14 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
+import com.kotlin.base.utils.AppPrefsUtils
 import com.kotlin.base.utils.YuanFenConverter
+
 import com.niu1078.base.ext.onClick
 import com.niu1078.base.ui.activity.BaseActivity
 import com.niu1078.base.ui.fragment.BaseMvpFragment
 import com.niu1078.base.widget.BannerImageLoader
 import com.niu1078.good.R
+import com.niu1078.good.common.GoodsConstant
 import com.niu1078.good.data.protocol.Goods
 import com.niu1078.good.event.AddCartEvent
 import com.niu1078.good.event.GoodsDetailImageEvent
@@ -26,8 +31,10 @@ import com.niu1078.good.injection.module.GoodsModule
 import com.niu1078.good.presenter.p.GoodsDetailPresenter
 import com.niu1078.good.presenter.view.GoodsDetailView
 import com.niu1078.good.widget.GoodsSkuPopView
+import com.niu1078.provider.router.RouterPath
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
+import isLogined
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
 
 
@@ -39,7 +46,9 @@ import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
  */
 class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), GoodsDetailView {
     override fun onAddCartResult(count: Int) {
-        println("购物车数量发生了变化:$count")
+
+
+        AppPrefsUtils.putInt(GoodsConstant.SP_CART_SIZE,count)
         Bus.send(UpdateCartSizeEvent())
     }
 
@@ -108,10 +117,11 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
         loadPopData(result)
     }
-private lateinit var goods:Goods
+
+    private lateinit var goods: Goods
     @SuppressLint("SetTextI18n")
     private fun loadPopData(result: Goods) {
-        goods=result
+        goods = result
         mSkuPop.setGoodsIcon(result.goodsDefaultIcon)
         mSkuPop.setGoodsCode(result.goodsCode)
         mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
@@ -137,8 +147,11 @@ private lateinit var goods:Goods
     }
 
     private fun addCart() {
+        //顶级函数 登录之后再去进行的操作
+        afterLogin {
+            mPresenter.addCart(goods.id, goods.goodsDesc, goods.goodsDefaultIcon, goods.goodsDefaultPrice, mSkuPop.getSelectCount(), mSkuPop.getSelectSku())
+        }
 
-        mPresenter.addCart(goods.id,goods.goodsDesc,goods.goodsDefaultIcon,goods.goodsDefaultPrice,mSkuPop.getSelectCount(),mSkuPop.getSelectSku())
 
     }
 
