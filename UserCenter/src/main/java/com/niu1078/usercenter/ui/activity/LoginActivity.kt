@@ -26,17 +26,19 @@ import org.jetbrains.anko.toast
  */
 @Route(path=RouterPath.userCenter.path_login)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
-    override fun onLoginResult(result: UserInfo) {
-        UserPrefsUtils.putUserInfo(result)
-//        startActivity<UserInfoActivity>()
-        finish()
-    }
 
     override fun injectComponent() {
         DaggerUserComponent.builder().activityComponent(activityComponent).uSerModule(USerModule()).build().inject(this)
         mPresenter.mView = this
 
     }
+
+    override fun onLoginResult(result: UserInfo) {
+        UserPrefsUtils.putUserInfo(result)
+//        startActivity<UserInfoActivity>()
+        finish()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.niu1078.order" />
+    package="com.niu1078.order" >
+
+    <application>
+        <activity android:name=".ui.activity.OrderConfirmActivity" />
+    </application>
+</manifest>

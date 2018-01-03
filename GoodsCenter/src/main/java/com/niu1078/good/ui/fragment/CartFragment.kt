@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
@@ -26,6 +27,8 @@ import com.niu1078.good.presenter.p.CartListPresenter
 import com.niu1078.good.presenter.view.CartListView
 import com.niu1078.good.ui.activity.GoodsDetailActivity
 import com.niu1078.good.ui.adapter.CartAdapter
+import com.niu1078.provider.common.ProviderConstant
+import com.niu1078.provider.router.RouterPath
 import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_two.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -172,7 +175,9 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     override fun onSubmitCartListResult(result: Int) {
 
         myToast("提交成功$result")
-        initDatas()
+          ARouter.getInstance().build(RouterPath.OrderCenter.path_order_confirm)
+                  .withInt(ProviderConstant.KEY_ORDER_ID, result)
+                  .navigation()
     }
 
     override fun onGetCartListResult(result: MutableList<CartGoods>?) {

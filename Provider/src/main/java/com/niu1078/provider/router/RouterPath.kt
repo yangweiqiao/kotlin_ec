@@ -14,9 +14,20 @@ object RouterPath {
              */
             const val path_login = "/userCenter/login"
 
+        }
+    }
+
+    class OrderCenter {
+        companion object {
+            /*
+            PATH_ORDER_CONFIRM
+             */
+            const val path_order_confirm = "/orderCenter/confirm"
+
 
         }
     }
+
     class MessageCenter {
         companion object {
             /*

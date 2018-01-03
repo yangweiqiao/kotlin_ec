@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -27,11 +29,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+
     compile project(':Provider')
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }
