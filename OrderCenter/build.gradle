@@ -1,41 +1,50 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+
+
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
+kapt{
+    arguments{
+        arg("moduleName",Project.getName())
+    }
+}
+
 android {
     compileSdkVersion 26
+
+
+
     defaultConfig {
-        applicationId "com.niu1078"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.0.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    compile project(':Provider')
-    if (isUserModule.toBoolean()) { //如果是库工程的就引入进来
-        compile project(':UserCenter')
-    }
-    compile project(':MessageCenter')
-    //dagger2依赖的插件 每个模块都有
+
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    compile project(':GoodsCenter')
-    compile project(':OrderCenter')
+    compile project(':Provider')
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 }
