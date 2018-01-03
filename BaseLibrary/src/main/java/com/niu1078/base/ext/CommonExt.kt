@@ -139,11 +139,11 @@ fun View.isGone(boolean: Boolean) {
  */
 fun View.isVisibility(boolean: Boolean) {
     if (boolean) {
-        //不可见
-        this.visibility = View.INVISIBLE
-    } else {
         //可见
         this.visibility = View.VISIBLE
+    } else {
+        //不可见
+        this.visibility = View.INVISIBLE
     }
 
 }

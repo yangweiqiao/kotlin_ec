@@ -18,6 +18,7 @@ import com.niu1078.good.event.UpdateCartSizeEvent
 import com.niu1078.good.ui.adapter.GoodsDetailVpAdapter
 import com.niu1078.provider.router.RouterPath
 import kotlinx.android.synthetic.main.activity_goods_detail.*
+import org.jetbrains.anko.startActivity
 import q.rorbin.badgeview.QBadgeView
 
 /**
@@ -56,8 +57,8 @@ class GoodsDetailActivity : BaseActivity() {
 
     private fun setCartBdage() {
         //位置
-       // mCartBdage.badgeGravity (Gravity.END  and  Gravity.TOP)
-        mCartBdage.badgeGravity= Gravity.END or Gravity.TOP
+        // mCartBdage.badgeGravity (Gravity.END  and  Gravity.TOP)
+        mCartBdage.badgeGravity = Gravity.END or Gravity.TOP
         //偏移量
         mCartBdage.setGravityOffset(22f, -2f, true)
 
@@ -77,6 +78,15 @@ class GoodsDetailActivity : BaseActivity() {
 
         }
         mCartBdage = QBadgeView(this)
+
+ mLeftIv.onClick {
+     finish()
+ }
+        //点击进入购物车
+        mEnterCartTv.onClick {
+            startActivity<CartActivity>()
+        }
+
     }
 
     override fun onDestroy() {

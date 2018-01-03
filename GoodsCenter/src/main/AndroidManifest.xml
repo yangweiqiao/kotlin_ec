@@ -6,6 +6,7 @@
         <activity android:name=".ui.activity.GoodsListActivity"/>
         <activity android:name=".ui.activity.GoodsDetailActivity" android:theme="@style/AppTheme" />
         <!--改变主题可以改变弹框的背景边框 这里没改变-->
+        <activity android:name=".ui.activity.CartActivity" />
     </application>
 
 </manifest>

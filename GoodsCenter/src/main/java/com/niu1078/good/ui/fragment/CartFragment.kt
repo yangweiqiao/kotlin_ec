@@ -200,5 +200,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     }
 
-
+fun setbackVisible(isVisible: Boolean){
+    mHeaderBar.getLeftView().isVisibility(isVisible)
+}
 }

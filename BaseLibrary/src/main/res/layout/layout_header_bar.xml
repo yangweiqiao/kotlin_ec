@@ -24,4 +24,12 @@
             android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5"
+        android:layout_alignParentBottom="true"
+        android:background="#e5e5e5"
+
+        />
 </RelativeLayout>

@@ -58,6 +58,11 @@ class HeaderBar @JvmOverloads constructor(
     fun getRightView(): TextView {
         return mRightTv
     }
+
+
+    fun getLeftView(): View {
+        return mLeftIv
+    }
     fun getRightText(): String {
         return mRightTv.text.toString()
     }
