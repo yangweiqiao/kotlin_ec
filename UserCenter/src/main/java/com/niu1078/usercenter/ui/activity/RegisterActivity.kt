@@ -6,6 +6,7 @@ import com.niu1078.base.common.AppManager
 import com.niu1078.base.ext.enable
 import com.niu1078.base.ext.onClick
 import com.niu1078.base.ui.activity.BaseMvpActivity
+import com.niu1078.base.utils.encode
 import com.niu1078.usercenter.R
 import com.niu1078.usercenter.injection.component.DaggerUserComponent
 import com.niu1078.usercenter.injection.module.USerModule
@@ -71,7 +72,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
 
         when (v.id) {
             R.id.mRegister -> {
-                mPresenter.register(mUserPhone.text.toString(), mUserPassword.text.toString(), mUserCode.text.toString())
+                mPresenter.register(mUserPhone.text.toString(), encode(mUserPassword.text.toString()) , mUserCode.text.toString())
             }
             R.id.registerCode -> {
                 toast("发送验证码")

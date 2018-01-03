@@ -2,6 +2,7 @@ package com.niu1078.base.ext
 
 import android.content.Context
 import android.graphics.drawable.AnimationDrawable
+import android.support.v4.app.Fragment
 import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
 import android.text.TextWatcher
@@ -104,7 +105,16 @@ fun Context.myToast(msg: String) {
     }
 
 }
+/*
+    toast的扩展方法
+ */
+fun Fragment.myToast(msg: String) {
+    this.activity.runOnUiThread {
+        activity. toast(msg)
+    }
 
+
+}
 /*
     控件是不是可见
  */

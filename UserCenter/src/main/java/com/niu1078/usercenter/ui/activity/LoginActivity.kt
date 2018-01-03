@@ -7,6 +7,7 @@ import com.kotlin.user.utils.UserPrefsUtils
 import com.niu1078.base.ext.enable
 import com.niu1078.base.ext.onClick
 import com.niu1078.base.ui.activity.BaseMvpActivity
+import com.niu1078.base.utils.encode
 import com.niu1078.provider.router.RouterPath
 import com.niu1078.usercenter.R
 import com.niu1078.usercenter.injection.component.DaggerUserComponent
@@ -49,7 +50,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
         mLogin.enable(password, { isbuttonEnable() })
 
         mLogin.onClick {
-            mPresenter.login(username.text.toString(), password.text.toString(), "pushid")
+            mPresenter.login(username.text.toString(), encode(password.text.toString()), "pushid")
         }
         headerBar.getRightView().onClick {
             toast("注册界面 ")

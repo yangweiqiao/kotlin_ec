@@ -10,13 +10,16 @@ import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.utils.AppPrefsUtils
-import com.niu1078.base.ext.myToast
-import com.niu1078.base.ext.startLoading
+import com.kotlin.base.utils.YuanFenConverter
+import com.niu1078.base.ext.*
 import com.niu1078.base.ui.fragment.BaseMvpFragment
 import com.niu1078.good.R
 import com.niu1078.good.common.GoodsConstant
 import com.niu1078.good.data.protocol.CartGoods
+import com.niu1078.good.event.CartAllChecked
+import com.niu1078.good.event.GoodsDetailImageEvent
 import com.niu1078.good.event.UpdateCartSizeEvent
+import com.niu1078.good.event.UpdateTotalPriceEvent
 import com.niu1078.good.injection.component.DaggerCartComponent
 import com.niu1078.good.injection.module.CartModule
 import com.niu1078.good.presenter.p.CartListPresenter
@@ -24,7 +27,9 @@ import com.niu1078.good.presenter.view.CartListView
 import com.niu1078.good.ui.activity.GoodsDetailActivity
 import com.niu1078.good.ui.adapter.CartAdapter
 import kotlinx.android.synthetic.main.fragment_cart.*
+import kotlinx.android.synthetic.main.fragment_goods_detail_tab_two.*
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * author :ywq .
@@ -55,9 +60,13 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         super.onViewCreated(view, savedInstanceState)
         initobserve()
         initView()
-        initDatas()
     }
 
+    override fun onStart() {
+        super.onStart()
+        initDatas()
+
+    }
     private fun initDatas() {
         mMultiStateView.startLoading()
         mPresenter.getCartList()
@@ -69,15 +78,51 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         cartAdapter = CartAdapter(context)
         mCartGoodsRv.adapter = cartAdapter
 
-        mAllCheckedCb.setOnCheckedChangeListener(object: CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                for (cartGoods in cartAdapter.dataList) {
-                    cartGoods.isSelected = isChecked
-                }
-                cartAdapter.notifyDataSetChanged()
-            }
-        })
 
+        mAllCheckedCb.onClick {
+            for (cartGoods in cartAdapter.dataList) {
+                cartGoods.isSelected = mAllCheckedCb.isChecked
+            }
+            updateTotalPrice()
+            cartAdapter.notifyDataSetChanged()
+
+        }
+
+        mHeaderBar.getRightView().onClick {
+
+            refreshEditStatus()
+        }
+
+
+        //删除购物车
+        mDeleteBtn.onClick {
+            val list :MutableList<Int> = arrayListOf()
+            cartAdapter.dataList.filter { it.isSelected }.mapTo(list) { it.id }
+
+            if (list.size==0)   myToast("请选择要删除的商品") else mPresenter.deleteCartList(list)
+
+        }
+
+        //提交购物车
+        mSettleAccountsBtn.onClick {
+            val list :MutableList<CartGoods> = arrayListOf()
+            val sum = cartAdapter.dataList.filter { it.isSelected }
+                    .mapTo(list) { it }
+                    .map { it.goodsCount * it.goodsPrice }
+                    .sum()
+            if (list.size==0)   myToast("请选择要结算的商品") else   mPresenter.submitCart(list,sum)
+        }
+    }
+
+    private fun refreshEditStatus() {
+        //获取文字判断当前的状态是什么状态
+        //是不是正在编辑的状态
+        val isEditStatus = getString(R.string.common_edit) == mHeaderBar.getRightText()
+
+        mTotalPriceTv.isGone(isEditStatus)
+        mSettleAccountsBtn.isGone(isEditStatus)
+        mDeleteBtn.isGone(!isEditStatus)
+        mHeaderBar.getRightView().text = if (isEditStatus) getString(R.string.common_complete )else getString(R.string.common_edit )
     }
 
 
@@ -88,9 +133,27 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
                     /*
                        这有个问题  不知道为什么会接受2次事件
                      */
-                    mPresenter.getCartList()
+              //      mPresenter.getCartList()
                 }
                 .registerInBus(this)
+
+
+        //通过adapter里面发送的event  来判断当前的状态是什么
+        Bus.observe<CartAllChecked>()
+                .subscribe { t: CartAllChecked ->
+                    run {
+                        mAllCheckedCb.isChecked = t.isChecked
+                        updateTotalPrice()
+                    }
+                }
+                .registerInBus(this)
+//数量影响总价
+        Bus.observe<UpdateTotalPriceEvent>()
+                .subscribe {
+                    updateTotalPrice()
+                }
+                .registerInBus(this)
+
     }
 
     //界面销毁的时候
@@ -102,18 +165,39 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     override fun onDeleteCartListResult(result: Boolean) {
 
+        myToast("删除成功")
+        initDatas()
     }
 
     override fun onSubmitCartListResult(result: Int) {
 
+        myToast("提交成功$result")
+        initDatas()
     }
 
     override fun onGetCartListResult(result: MutableList<CartGoods>?) {
         result?.let {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
             cartAdapter.setData(result)
-            AppPrefsUtils.putInt(GoodsConstant.SP_CART_SIZE, result.size)
+
         }
+        if (result==null ||result.size==0  ) {
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
+        }
+        AppPrefsUtils.putInt(GoodsConstant.SP_CART_SIZE, result?.size?:0)
+        Bus.send(UpdateCartSizeEvent())
+        updateTotalPrice()
     }
+
+    private var mTotalPrice: Long = 0
+    fun updateTotalPrice() {
+        mTotalPrice = cartAdapter.dataList
+                .filter { it.isSelected }
+                .map { it.goodsCount * it.goodsPrice }
+                .sum()
+        mTotalPriceTv.text = "合计:${YuanFenConverter.changeF2YWithUnit(mTotalPrice)} "
+
+    }
+
 
 }
