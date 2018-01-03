@@ -184,6 +184,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         if (result==null ||result.size==0  ) {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }
+        mAllCheckedCb.isChecked=false
         AppPrefsUtils.putInt(GoodsConstant.SP_CART_SIZE, result?.size?:0)
         Bus.send(UpdateCartSizeEvent())
         updateTotalPrice()
