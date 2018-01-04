@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 26
+    buildToolsVersion buildToolsVersion
     defaultConfig {
         applicationId "com.niu1078"
         minSdkVersion 15
@@ -18,17 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
-
-    compile project(':Provider')
+    //compile project(':Provider')
     if (isUserModule.toBoolean()) { //如果是库工程的就引入进来
         compile project(':UserCenter')
 
@@ -36,6 +36,10 @@ dependencies {
     compile project(':MessageCenter')
     //dagger2依赖的插件 每个模块都有
     compile project(':GoodsCenter')
-     compile project(':OrderCenter')
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    compile project(':OrderCenter')
+    //  kapt "com.google.dagger:dagger-compiler:$dagger_version"
+}
+
+repositories {
+    mavenCentral()
 }

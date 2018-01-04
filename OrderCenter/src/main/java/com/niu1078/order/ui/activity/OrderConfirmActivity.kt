@@ -23,9 +23,8 @@ import org.jetbrains.anko.toast
  */
 
 
-@Route(path = RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
+@Route(path = RouterPath.OrderCenter.PATH_ORDER_CONFIRM  )
 class OrderConfirmActivity : BaseMvpActivity<OrderPresenter>(), OrderView {
-
 
     @Autowired(name = ProviderConstant.KEY_ORDER_ID)
     @JvmField

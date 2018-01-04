@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 26
-
+    buildToolsVersion buildToolsVersion
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
@@ -25,8 +25,6 @@ android {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
-
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -89,12 +87,8 @@ dependencies {
     //BadgeView
     compile 'q.rorbin:badgeview:1.1.2'
 
-
-
-
-
-
-
-
 }
 
+repositories {
+    mavenCentral()
+}
