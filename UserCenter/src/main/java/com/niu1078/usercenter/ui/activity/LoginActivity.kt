@@ -24,7 +24,7 @@ import org.jetbrains.anko.toast
  * desc :登录界面
  * action:
  */
-@Route(path=RouterPath.userCenter.path_login)
+@Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
 
     override fun injectComponent() {

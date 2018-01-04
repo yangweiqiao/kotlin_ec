@@ -15,9 +15,7 @@ import dagger.Component
 @PerComponentScope
 @Component(dependencies = arrayOf(ActivityComponent::class), modules = arrayOf(OrderModule::class))
 interface OrderComponent {
-    fun inject(orderConfirmActivity: OrderConfirmActivity)
+    fun inject(activity: OrderConfirmActivity)
 
-
-    // fun inject (activity : )
 
 }

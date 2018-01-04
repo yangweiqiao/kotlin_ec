@@ -14,8 +14,8 @@ import dagger.Provides
 @Module
 class  OrderModule{
     @Provides
-    fun  provideOrderService (orderServiceImpl: OrderServiceImpl): OrderService{
-        return  orderServiceImpl
+    fun  providesOrderService (service: OrderServiceImpl): OrderService{
+        return  service
     }
 
 }

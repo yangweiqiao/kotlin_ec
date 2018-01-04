@@ -20,6 +20,6 @@ fun afterLogin(method:()->Unit){
     if (isLogined()){
         method()
     }else{
-        ARouter.getInstance().build(RouterPath.userCenter.path_login).navigation()
+        ARouter.getInstance().build(RouterPath.UserCenter.PATH_LOGIN).navigation()
     }
 }
