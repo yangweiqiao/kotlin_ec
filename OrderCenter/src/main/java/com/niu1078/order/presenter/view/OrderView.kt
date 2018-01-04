@@ -1,6 +1,7 @@
 package com.niu1078.order.presenter.view
 
 import com.niu1078.base.presenter.view.BaseView
+import com.niu1078.order.data.protocol.Order
 
 /**
  * author :ywq .
@@ -9,8 +10,7 @@ import com.niu1078.base.presenter.view.BaseView
  * action:
  */
 interface OrderView  : BaseView{
-
-
+    fun onGetOrderByIdResult(t: Order)
 
 
 }

@@ -173,8 +173,6 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     }
 
     override fun onSubmitCartListResult(result: Int) {
-
-        myToast("提交成功$result")
           ARouter.getInstance().build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
                   .withInt(ProviderConstant.KEY_ORDER_ID, result)
                   .navigation()

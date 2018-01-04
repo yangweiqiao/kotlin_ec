@@ -22,10 +22,10 @@ class BaseApplication : Application() {
 /*
 初始化路由
  */
-        if (isDebug()) {
-            ARouter.openLog()
-            ARouter.openDebug()
-        }
+       // if (isDebug()) {
+        ARouter.openDebug()
+        ARouter.openLog()
+       // }
         ARouter.init(this)
 
     }
